@@ -1,0 +1,11 @@
+<div>
+    <label>Title:</label>
+    <div>{{dataSource.title}}</div>
+</div>
+<div>
+    <button (click)="chooseTeam(1)">Team 1</button>
+    <button (click)="chooseTeam(2)">Team 2</button>
+</div>
+<div>
+    <app-team [dataSource]="team"></app-team>
+</div>
