@@ -7,13 +7,18 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 })
 export class TeamComponent implements OnInit {
 
+  private _dataSource: TeamDataSource = {members: []} as TeamDataSource;;
   @Input()
-  public dataSource: TeamDataSource = {} as TeamDataSource;
+  public get dataSource(): TeamDataSource {
+    return this._dataSource;
+  }
+  public set dataSource(value:TeamDataSource){
+    this._dataSource = value;
+  }
 
   constructor() { }
 
-  public ngOnInit(): void {
-  }
+  public ngOnInit(): void { }
 
 }
 
