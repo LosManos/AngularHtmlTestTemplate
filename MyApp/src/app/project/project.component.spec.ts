@@ -53,14 +53,45 @@ describe('ProjectComponent', () => {
       title: 'Any new title'
     } as ProjectDataSource;
     const fixture = TestBed.createComponent(ProjectComponent);
-    fixture.detectChanges();
 
     //  Act.
     fixture.componentRef.instance.dataSource = indata;
-    fixture.detectChanges();
-
+    
     //  Assert.
+    fixture.detectChanges();
     const compiled = fixture.nativeElement;
+    expect(getTitleElement(compiled).textContent).toContain('Any new title');
+  });
+
+  //  This test updates data set through 
+  //  @Input()
+  //  or
+  //  updating "data" during run time.
+  //  <app-project [dataSource]="data"></app-project>
+  //
+  //  To make Angular detect the change we force a `detectChanges()`.
+  it('should show settable title, tested more thoroughly', () => {
+    const originalTitle = 'My Project';
+    const indata = {
+      title: 'Any new title'
+    } as ProjectDataSource;
+    const fixture = TestBed.createComponent(ProjectComponent);
+    fixture.detectChanges();
+    let  compiled = fixture.nativeElement;
+    //  Here we check we know the original value, so we know
+    //  that we really are changing something.
+    //  If the test had been data driven, or more complex, we might check
+    //  that the original value and updated value differs.
+    expect(getTitleElement(compiled).textContent).toContain(originalTitle, 
+      'Sanity check the base line is known.');
+
+
+    //  Act.
+    fixture.componentRef.instance.dataSource = indata;
+    
+    //  Assert.
+    fixture.detectChanges();
+    compiled = fixture.nativeElement;
     expect(getTitleElement(compiled).textContent).toContain('Any new title');
   });
 

@@ -36,7 +36,7 @@ describe('ProjectComponent', () => {
     expect(component).toBeTruthy();
   });
   
-  fit('should have a title', () => {
+  it('should have a title', () => {
     const indata = createIndata();
     setup(indata);
 
@@ -65,7 +65,7 @@ describe('ProjectComponent', () => {
     compiled = fixture.debugElement.nativeElement;
   }
 
-  //  Here is a proxy compnent to hold the SUT.
+  //  Here is a proxy component to hold the SUT.
   @Component({
     selector: `app-proxy`,  // Can be anything.
     template: `<app-project [dataSource]="data"></app-project>` // Is the selctor of the SUT.
